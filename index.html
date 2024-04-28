@@ -1,202 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Hex Quest</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Word Quest</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap"
+      rel="stylesheet"
+    />
     <!-- Bootstrap link -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
-      <!-- google ads -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1447999077728505"
-    crossorigin="anonymous"></script>
-</head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2VYDWXMR5L"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <!-- google ads -->
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1447999077728505"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <!-- Google tag (gtag.js) -->
+  <script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=G-2VYDWXMR5L"
+  ></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
 
-  gtag('config', 'G-2VYDWXMR5L');
-</script>
-<body>
+    gtag("config", "G-2VYDWXMR5L");
+  </script>
+  <body>
     <div id="bg" class="container-fluid p-0">
-        <section id="color" class="mb-2">
-                <h1 id="title" class="m-auto">Hex Quest</h1>
-        </section>
+      <section id="color">
+        <h1 id="title" class="m-auto">Word Quest</h1>
+      </section>
 
-        <section id="guesses" class="my-1">
-        </section>
+      <section id="guesses" class="my-3"></section>
 
-        <section id="kb" class="nozoom">
-            <div class="mx-auto kbcontainer">
-                <div class="mx-auto">
-                    <div id="kb1" class="row m-auto my-1"></div>
-                    <div id="kb2" class="row m-auto my-1"></div>
-                    
-                    <div class="row m-auto my-2">
-                        <button type="button" id="qb" class="col-1 okey mx-2" data-toggle="popover" data-placement="top" data-popover-content="#p1"><h6 class="m-auto">?</h6></button>
-                        <button type="button" id="del" disabled="true" class="col-2 p-0 okey"><h6 class="m-auto">⌫</h6></button>
-                        <div class="col-4"></div>
-                        <button type="button" id="enter" disabled="true" class="col-3 p-0 okey"><h6 class="m-auto">Enter</h6></button> 
-                    </div>
-                </div>     
-            </div> 
-        </section>
-        <div class="row m-0 mt-2">
-            <div class="col-12 text-center">
-                <h6 id="alert"></h6>
+      <section id="kb" class="nozoom">
+        <div class="mx-auto kbcontainer">
+          <div class="mx-auto">
+            <div id="kb1" class="row m-auto my-1 qwerty-keys"></div>
+            <div id="kb2" class="row m-auto my-1 qwerty-keys"></div>
+            <div class="row m-auto my-2 enter-key demo">
+              <button type="button" id="enter" disabled="true" class="col-3 p-0 okey">
+                <h6 class="m-auto">Enter</h6>
+              </button>
+              <div id="kb3" class="row m-auto my-1 qwerty-keys"></div>
+              <button type="button" id="del" disabled="true" class="col-2 p-0 okey">
+                <h6 class="m-auto">⌫</h6>
+              </button>
             </div>
-        </div> 
-        <canvas id="myCanvas"></canvas>
-
-        <div id="p1" style="display: none;">
-            <div class="popover-body">
-                <h6>How to Hexdle</h6>
-            <p>Guess the hex code of the color of the title. The background will change to the value of your guess. </p>
-            <div class="d-flex">
-                <div class="d-flex align-items-center text-center mx-auto">
-                    <div class="exkey green mx-1">
-                        <p class="m-auto">right</p>
-                    </div>
-                    <div class="exkey yellow mx-1">
-                        <p class="m-auto">wrong place</p>
-                    </div>
-                    <div class="exkey gray mx-1">
-                        <p class="m-auto">wrong</p>
-                    </div>
-                </div>
-            </div>
-            <hr>
-            <div>
-                <h6>Unfamiliar with HEX Colors?</h6> 
-                <p>HEX color is are used to represent an additive color model with hexadecimal values. Colors result from transmitted light. An absence of all light is black and the combination of all is white.</p>
-                <!-- <img class="mw-100"src="light-diagram.png" alt="color-diagram"> -->
-                <div class="venn">
-                    <div class="circle-red"></div>
-                    <div class="circle-green"></div>
-                    <div class="circle-blue"></div>
-                </div>
-                <p class="mt-3">The first two letters/numbers refer to the percentage of red light, the next two refer to green light, and the last two refer to blue light.</p>
-                <p>The color values are defined in values between 00 and FF, instead of from 0 to 255 in RGB. Numbers are used when the value is 1-9. Letters are used when the value is higher than 9 (eg: A=10, B=11, C=12...F=15)</p>
-                <p>To convert the hexadecimal number system to the decimal number system: <br>
-                    <b>Step 1:</b> Multiply each digit with the powers of 16 starting from the units place of the number. <br>
-                    <b>Step 2:</b> Simplify each of the products and add them.</p>
-                <p>Learn by trial and error! Use this chart to get started:</p>
-                
-                <b>
-                    <div class="row border-bottom">
-                        <div class="col-3"> Color</div>
-                        <div class="col-4">Hex</div>
-                        <div class="col-5">RBG</div>
-                     </div> 
-                </b>
-                <div class="ctable">              
-                    <div class="row">Black</div>                 
-                    <div class="row">
-                        <div class="col rounded tg-bl"></div>
-                        <div class="col-4">#000000</div>
-                        <div class="col-6">(0, 0, 0)</div>
-                    </div>
-                    <div class="row">White</div> 
-                    <div class="row">
-                        <div class="col rounded tg-w"></div>
-                        <div class="col-4">#FFFFFF</div>
-                        <div class="col-6">(255, 255, 255)</div>
-                    </div>
-                    <div class="row">Red</div> 
-                    <div class="row">
-                        <div class="col rounded tg-r"></div>
-                        <div class="col-4">#FF0000</div>
-                        <div class="col-6">(255, 0, 0)</div>
-                    </div>
-                    <div class="row">Lime</div> 
-                    <div class="row">
-                        <div class="col rounded tg-l"></div>
-                        <div class="col-4">#00FF00	</div>
-                        <div class="col-6">(0, 255, 0)</div>
-                    </div>
-                    <div class="row">Blue</div> 
-                    <div class="row">
-                        <div class="col rounded tg-b"></div>
-                        <div class="col-4">#0000FF	</div>
-                        <div class="col-6">(0, 0, 255)</div>
-                    </div>
-                    <div class="row">Yellow</div> 
-                    <div class="row">
-                        <div class="col rounded tg-y"></div>
-                        <div class="col-4">#FFFF00	</div>
-                        <div class="col-6">(255, 255, 0)</div>
-                    </div>
-                    <div class="row">Cyan</div> 
-                    <div class="row">
-                        <div class="col rounded tg-c"></div>
-                        <div class="col-4">#00FFFF</div>
-                        <div class="col-6">(0, 255, 255)</div>
-                    </div>
-                    <div class="row">Magenta</div> 
-                    <div class="row">
-                        <div class="col rounded tg-m"></div>
-                        <div class="col-4">#FF00FF</div>
-                        <div class="col-6">(250, 0, 255)</div>
-                    </div>
-                    <div class="row">Maroon</div>
-                    <div class="row">
-                        <div class="col rounded tg-mr"></div>
-                        <div class="col-4">#800000</div>
-                        <div class="col-6">(128, 0, 0)</div>
-                    </div>
-                    <div class="row">Olive</div> 
-                    <div class="row">
-                        <div class="col rounded tg-o"></div>
-                        <div class="col-4">#808000</div>
-                        <div class="col-6">(128, 128, 0)</div>
-                    </div>
-                    <div class="row">Green</div> 
-                    <div class="row">
-                        <div class="col rounded tg-g"></div>
-                        <div class="col-4">#008000</div>
-                        <div class="col-6">(0, 128, 0)</div>
-                    </div>
-                    <div class="row">Purple</div> 
-                    <div class="row">
-                        <div class="col rounded tg-p"></div>
-                        <div class="col-4">#800080</div>
-                        <div class="col-6">(128, 0, 128)</div>
-                    </div>
-                    <div class="row">Teal</div> 
-                    <div class="row">
-                        <div class="col rounded tg-t"></div>
-                        <div class="col-4">#008080</div>
-                        <div class="col-6">(0, 128, 128)</div>
-                    </div>
-                    <div class="row">Navy</div> 
-                    <div class="row">
-                        <div class="col rounded tg-n"></div>
-                        <div class="col-4">#000080</div>
-                        <div class="col-6">(0, 0, 128)</div>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
-    </div>
-
-
+      </section>
+      <div class="row m-0 mt-2">
+        <div class="col-12 text-center">
+          <h6 id="alert"></h6>
+        </div>
+      </div>
+      <canvas id="myCanvas"></canvas>
     </div>
     <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-    
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+      integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+      crossorigin="anonymous"
+    ></script>
+
     <!-- canvas confetti API -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
-    
+
     <!-- jQuery link -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script defer src="app.js"></script>
-</body>
+  </body>
 </html>
